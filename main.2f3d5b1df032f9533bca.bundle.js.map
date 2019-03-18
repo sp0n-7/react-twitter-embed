@@ -1,0 +1,1 @@
+{"version":3,"file":"main.2f3d5b1df032f9533bca.bundle.js","sources":["webpack:///./src/components/twitter-widget-url.js"],"sourcesContent":["const twitter_widget_js = 'https://platform.twitter.com/widgets.js'\nexport default twitter_widget_js\n"],"mappings":"AACA","sourceRoot":""}
