@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "babel-loader": "^8.0.0-beta",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
@@ -71,6 +70,7 @@
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^5.0.0",
     "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.0-beta",
     "chai": "^4.2.0",
     "cross-env": "^5.1.4",
     "enzyme": "^3.9.0",
@@ -100,6 +100,7 @@
   "dependencies": {
     "enzyme-adapter-react-16": "^1.11.0",
     "exenv": "^1.2.2",
+    "lodash": "^4.17.11",
     "react-proptype-conditional-require": "^1.0.4",
     "scriptjs": "^2.5.9"
   }
