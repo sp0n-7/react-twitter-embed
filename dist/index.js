@@ -912,7 +912,7 @@ function (_Component) {
           }
 
           if (!_this.isMountCanceled) {
-            _this.createButton();
+            _this.createButtonDebounced();
           }
         });
       }

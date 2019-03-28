@@ -32,7 +32,7 @@ export default class TwitterShareButton extends Component {
         }
 
         if (!this.isMountCanceled) {
-          this.createButton()
+          this.createButtonDebounced()
         }
       })
     }
