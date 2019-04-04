@@ -31,9 +31,7 @@ export default class TwitterShareButton extends Component {
           return
         }
 
-        if (!this.isMountCanceled) {
-          this.createButtonDebounced()
-        }
+        this.createButtonDebounced()
       })
     }
   }
@@ -42,11 +40,13 @@ export default class TwitterShareButton extends Component {
     if (this.button) {
       this.button.remove()
     }
-    this.button = await window.twttr.widgets.createShareButton(
-      this.props.url,
-      this.embedContainer,
-      this.props.options
-    )
+    if (!this.isMountCanceled) {
+      this.button = await window.twttr.widgets.createShareButton(
+        this.props.url,
+        this.embedContainer,
+        this.props.options
+      )
+    }
   }
 
   createButtonDebounced = debounce(this.createButton, 500)
@@ -54,14 +54,16 @@ export default class TwitterShareButton extends Component {
   componentDidUpdate() {
     if (!window.twttr) {
       this.initializeTwitter()
-    } else if (!this.isMountCanceled) {
+    } else {
       this.createButtonDebounced()
     }
   }
 
   componentWillUnmount() {
     this.isMountCanceled = true
-    this.embedContainer.innerHTML = ''
+    if (this.button) {
+      this.button.remove()
+    }
   }
 
   render() {

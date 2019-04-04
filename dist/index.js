@@ -911,9 +911,7 @@ function (_Component) {
             return;
           }
 
-          if (!_this.isMountCanceled) {
-            _this.createButtonDebounced();
-          }
+          _this.createButtonDebounced();
         });
       }
     });
@@ -931,13 +929,18 @@ function (_Component) {
                 _this.button.remove();
               }
 
-              _context.next = 3;
+              if (_this.isMountCanceled) {
+                _context.next = 5;
+                break;
+              }
+
+              _context.next = 4;
               return window.twttr.widgets.createShareButton(_this.props.url, _this.embedContainer, _this.props.options);
 
-            case 3:
+            case 4:
               _this.button = _context.sent;
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -960,7 +963,7 @@ function (_Component) {
     value: function componentDidUpdate() {
       if (!window.twttr) {
         this.initializeTwitter();
-      } else if (!this.isMountCanceled) {
+      } else {
         this.createButtonDebounced();
       }
     }
@@ -968,7 +971,10 @@ function (_Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.isMountCanceled = true;
-      this.embedContainer.innerHTML = '';
+
+      if (this.button) {
+        this.button.remove();
+      }
     }
   }, {
     key: "render",
